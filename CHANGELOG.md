@@ -1,3 +1,8 @@
+## 0.0.7
+
+* Updated example with transfer data to new page.
+
+
 ## 0.0.6
 
 * Removed dependency injectable from lib.
