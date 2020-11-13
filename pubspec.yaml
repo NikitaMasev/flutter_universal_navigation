@@ -1,6 +1,6 @@
 name: universal_navigation
 description: The navigation core for flutter apps. Allows to use bottom navigation and transfer some data between blocs.
-version: 0.0.5
+version: 0.0.6
 homepage: https://github.com/NikitaMasev/flutter_universal_navigation
 
 environment:
@@ -12,11 +12,9 @@ dependencies:
     sdk: flutter
 
   get_it: ^5.0.1
-  injectable: ^1.0.5
   rxdart: ^0.24.1
 
 dev_dependencies:
-  injectable_generator: ^1.0.6
   build_runner: ^1.10.4
   flutter_test:
     sdk: flutter

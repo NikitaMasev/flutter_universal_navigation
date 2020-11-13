@@ -1,9 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:universal_navigation/di/event_notifier_streams_module.dart';
-import 'package:universal_navigation/di/nav_keys_module.dart';
-import 'package:universal_navigation/di/navigation_controller_module.dart';
-import 'package:universal_navigation/di/navigation_controller_streams_module.dart';
 import 'package:universal_navigation/event_notifier/core_event_notifier.dart';
 import 'package:universal_navigation/navigation/core/app_navigator.dart';
 import 'package:universal_navigation/navigation/core/navigation_controller.dart';
@@ -19,25 +16,23 @@ import 'package:universal_navigation/navigation/models/navigation_keys/global_na
 
 final getIt = GetIt.instance;
 
-GetIt initUNavInjection(GetIt get, String env) {
-  final eventNotifierStreamsModule = _$EventNotifierStreamsModule();
-  final navigationControllerStreamsModule = _$NavigationControllerStreamsModule();
-  final navKeysModule = _$NavKeysModule();
-  final navigationControllerModule = _$NavigationControllerModule();
+GetIt initUNavInjection<T>(GetIt get, String env) {
+  get.registerFactory<BehaviorSubject<T>>(() => BehaviorSubject<T>());
+  get.registerFactory<BehaviorSubject<NavigationTabArguments>>(() => BehaviorSubject<NavigationTabArguments>());
+  get.registerFactory<BehaviorSubject<NavigationArguments>>(() => BehaviorSubject<NavigationArguments>());
 
-  get.registerFactory<BehaviorSubject<dynamic>>(() => eventNotifierStreamsModule.getEventsNotifierSubject);
-  get.registerFactory<BehaviorSubject<NavigationTabArguments>>(() => navigationControllerStreamsModule.getNestedNavTabArgsSubject);
-  get.registerFactory<BehaviorSubject<NavigationArguments>>(() => navigationControllerStreamsModule.getGlobalNavArgsSubject);
-  get.registerFactory<NavigationEvents>(() => navigationControllerModule.getNavigationEvents);
+  get.registerSingleton<EventNotifier<T>>(CoreEventNotifier<T>(get<BehaviorSubject<T>>()));
+  get.registerSingleton<BottomNavKey>(BottomNavKey(GlobalKey<NavigatorState>()));
+  get.registerSingleton<GlobalNavKey>(GlobalNavKey(GlobalKey<NavigatorState>()));
 
-  get.registerSingleton<BottomNavKey>(navKeysModule.getBottomNavKey);
-  get.registerSingleton<EventNotifier<dynamic>>(CoreEventNotifier<dynamic>(get<BehaviorSubject<dynamic>>()));
-  get.registerSingleton<GlobalNavKey>(navKeysModule.getGlobalNavKey);
-  get.registerSingleton<NavigationController<dynamic>>(NavigationControllerEvents<dynamic>(
+  final navControllerEvents = NavigationControllerEvents<T>(
     get<BehaviorSubject<NavigationTabArguments>>(),
     get<BehaviorSubject<NavigationArguments>>(),
-    get<EventNotifier<dynamic>>(),
-  ));
+    get<EventNotifier<T>>(),
+  );
+
+  get.registerSingleton<NavigationController<T>>(navControllerEvents);
+  get.registerSingleton<NavigationEvents>(navControllerEvents);
 
   return get;
 }
@@ -52,12 +47,3 @@ GetIt initUNavAppNavigatorInjection(GetIt get, String env) {
   ));
   return get;
 }
-
-class _$EventNotifierStreamsModule extends EventNotifierStreamsModule {}
-
-class _$NavigationControllerStreamsModule
-    extends NavigationControllerStreamsModule {}
-
-class _$NavKeysModule extends NavKeysModule {}
-
-class _$NavigationControllerModule extends NavigationControllerModule {}

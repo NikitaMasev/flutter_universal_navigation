@@ -1,7 +1,7 @@
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:injectable/injectable.dart';
 import 'package:universal_navigation/navigation/core/navigation_events.dart';
 import 'package:universal_navigation/navigation/core/tab_change_listener.dart';
 import 'package:universal_navigation/navigation/models/navigation_data/navigation_arguments.dart';
@@ -12,7 +12,6 @@ import 'package:universal_navigation/navigation/models/navigation_keys/bottom_na
 import 'package:universal_navigation/navigation/models/navigation_keys/global_nav_key.dart';
 import 'package:universal_navigation/navigation/models/navigation_type_events.dart';
 
-@Singleton(as: TabChangeListener)
 class AppNavigator with TabChangeListener {
   final List<TabFlow> _tabFlows;
   final GlobalFlows _globalFlows;

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:universal_navigation/navigation/core/navigation_controller.dart';
+import 'package:universal_navigation_example/events.dart';
 import 'package:universal_navigation_example/pages/tab_pages/nested_tab_page.dart';
 
 @injectable
 class FirstTabPage extends StatefulWidget {
-  final NavigationController<dynamic> _navigationController;
+  final NavigationController<TypeEvent> _navigationController;
 
   const FirstTabPage(this._navigationController);
   @override

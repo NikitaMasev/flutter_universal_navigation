@@ -1,4 +1,3 @@
-import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:universal_navigation/event_notifier/core_event_notifier.dart';
 import 'package:universal_navigation/navigation/core/navigation_controller.dart';
@@ -7,7 +6,6 @@ import 'package:universal_navigation/navigation/models/navigation_data/navigatio
 import 'package:universal_navigation/navigation/models/navigation_data/navigation_tab_arguments.dart';
 import 'package:universal_navigation/navigation/models/navigation_type_events.dart';
 
-@Singleton(as: NavigationController)
 class NavigationControllerEvents<T> with NavigationController<T>, NavigationEvents {
   final BehaviorSubject<NavigationTabArguments> _tabNestedNavigationEvents;
   final BehaviorSubject<NavigationArguments> _globalNavigationEvents;

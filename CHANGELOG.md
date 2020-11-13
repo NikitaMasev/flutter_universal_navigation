@@ -1,3 +1,9 @@
+## 0.0.6
+
+* Removed dependency injectable from lib.
+* Made generic type for events.
+* Removed modules from lib.
+
 ## 0.0.5
 
 * Initialized part dependencies in core lib.

@@ -20,6 +20,7 @@ import '../pages/tab_pages/second_tab_page.dart';
 import '../pages/start_page.dart';
 import 'modules/tab_flows_module.dart';
 import '../pages/tab_pages/third_tab_page.dart';
+import '../events.dart';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -36,11 +37,13 @@ GetIt $initGetIt(
   gh.factory<DefaultBottomNavBridge>(
       () => bottomNavBridgeModule.getDefaultBottomNavBridge);
   gh.factory<FirstTabPage>(
-      () => FirstTabPage(get<NavigationController<dynamic>>()));
-  gh.factory<LoginPage>(() => LoginPage(get<NavigationController<dynamic>>()));
+      () => FirstTabPage(get<NavigationController<TypeEvent>>()));
+  gh.factory<LoginPage>(
+      () => LoginPage(get<NavigationController<TypeEvent>>()));
   gh.factory<NestedTabPage>(() => NestedTabPage());
   gh.factory<SecondTabPage>(() => SecondTabPage());
-  gh.factory<StartPage>(() => StartPage(get<NavigationController<dynamic>>()));
+  gh.factory<StartPage>(
+      () => StartPage(get<NavigationController<TypeEvent>>()));
   gh.factory<ThirdTabPage>(() => ThirdTabPage());
 
   // Eager singletons must be registered in the right order

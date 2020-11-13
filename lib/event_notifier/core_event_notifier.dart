@@ -1,4 +1,3 @@
-import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 mixin EventNotifier<T> {
@@ -7,7 +6,6 @@ mixin EventNotifier<T> {
   Stream<T> getStreamEvents();
 }
 
-@Singleton(as: EventNotifier)
 class CoreEventNotifier<T> with EventNotifier<T> {
   final BehaviorSubject<T> _controllerEventsData;
 
