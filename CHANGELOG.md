@@ -1,3 +1,7 @@
+## 0.0.8
+
+* Updated example with transfer data using freezed package.
+
 ## 0.0.7
 
 * Updated example with transfer data to new page.

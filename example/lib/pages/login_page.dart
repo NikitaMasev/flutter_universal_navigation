@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:universal_navigation/navigation/bottom_navigation_page.dart';
 import 'package:universal_navigation/navigation/core/navigation_controller.dart';
-import 'package:universal_navigation_example/events.dart';
+import 'package:universal_navigation_example/event_union.dart';
 
 @injectable
 class LoginPage extends StatefulWidget {
   static const routeName = '/login_page';
-  final NavigationController<EventData> _navigationController;
+  final NavigationController<EventUnion> _navigationController;
 
   const LoginPage(this._navigationController);
 
@@ -21,11 +21,11 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     widget._navigationController.getStreamEventsData().listen((event) {
-      if (event.event == Event.Login) {
+      event.when(() => null, login: (e) {
         setState(() {
-          text = event.data;
+          text = e;
         });
-      }
+      });
     });
     super.initState();
   }

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:universal_navigation/navigation/core/navigation_controller.dart';
-import 'package:universal_navigation_example/events.dart';
+import 'package:universal_navigation_example/event_union.dart';
 import 'package:universal_navigation_example/pages/login_page.dart';
 
 @injectable
 class StartPage extends StatefulWidget {
   static const routeName = '/start_page';
 
-  final NavigationController<EventData> _navigationController;
+  final NavigationController<EventUnion> _navigationController;
 
   const StartPage(this._navigationController);
 
@@ -29,7 +29,7 @@ class _StartPageState extends State<StartPage> {
                 padding: const EdgeInsets.only(top: 16),
                 child: TextButton(
                   onPressed: () {
-                    widget._navigationController.pushGlobalPage(LoginPage.routeName, eventData: EventData(event: Event.Login, data: 'Text from Start page'));
+                    widget._navigationController.pushGlobalPage(LoginPage.routeName, eventData: EventUnion.login(data: 'Data From Start Page'));
                   },
                   child: Text('NEXT'),
                 ),

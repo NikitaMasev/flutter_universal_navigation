@@ -12,7 +12,7 @@ import 'package:universal_navigation/navigation/models/navigation_flow_data/tabf
 
 import 'modules/bottom_nav_bridge_module.dart';
 import '../pages/default_bottom_nav_bridge.dart';
-import '../events.dart';
+import '../event_union.dart';
 import '../pages/tab_pages/first_tab_page.dart';
 import 'modules/global_flows_module.dart';
 import '../pages/login_page.dart';
@@ -37,13 +37,13 @@ GetIt $initGetIt(
   gh.factory<DefaultBottomNavBridge>(
       () => bottomNavBridgeModule.getDefaultBottomNavBridge);
   gh.factory<FirstTabPage>(
-      () => FirstTabPage(get<NavigationController<EventData>>()));
+      () => FirstTabPage(get<NavigationController<EventUnion>>()));
   gh.factory<LoginPage>(
-      () => LoginPage(get<NavigationController<EventData>>()));
+      () => LoginPage(get<NavigationController<EventUnion>>()));
   gh.factory<NestedTabPage>(() => NestedTabPage());
   gh.factory<SecondTabPage>(() => SecondTabPage());
   gh.factory<StartPage>(
-      () => StartPage(get<NavigationController<EventData>>()));
+      () => StartPage(get<NavigationController<EventUnion>>()));
   gh.factory<ThirdTabPage>(() => ThirdTabPage());
 
   // Eager singletons must be registered in the right order
