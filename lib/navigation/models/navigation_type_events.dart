@@ -1,0 +1,1 @@
+enum NavigationTypeEvent { PUSH, PUSH_REPLACEMENT, POP, NAVIGATE_TO_TAB }

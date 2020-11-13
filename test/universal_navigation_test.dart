@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:universal_navigation/universal_navigation.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('universal_navigation');
@@ -17,7 +16,7 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
+  /*test('getPlatformVersion', () async {
     expect(await UniversalNavigation.platformVersion, '42');
-  });
+  });*/
 }

@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
+import 'package:universal_navigation/navigation/models/navigation_flow_data/globalflows.dart';
+import 'package:universal_navigation/navigation/models/navigation_keys/global_nav_key.dart';
+import 'package:universal_navigation_example/di/injection.dart';
+import 'package:universal_navigation_example/pages/start_page.dart';
 
-void main() {
-  runApp(MyApp());
+Future<void> main() async {
+  configureInjection(Environment.prod);
+  runApp(Application());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-
+class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Running on'),
-        ),
-      ),
+      title: 'Universal Navigation Test App',
+      initialRoute: StartPage.routeName,
+      navigatorKey: getIt<GlobalNavKey>().key,
+      debugShowCheckedModeBanner: false,
+      routes: getIt<GlobalFlows>().flows,
     );
   }
 }
