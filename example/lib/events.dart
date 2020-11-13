@@ -1,1 +1,13 @@
-enum TypeEvent {RegisterNewAccount, Login, OpenWebView}
+import 'package:flutter/material.dart';
+
+class EventData {
+  final Event event;
+  final dynamic data;
+
+  const EventData({
+    @required this.event,
+    this.data,
+  });
+}
+
+enum Event {Login, FirstTab}

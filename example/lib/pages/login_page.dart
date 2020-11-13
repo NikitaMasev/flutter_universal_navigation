@@ -7,14 +7,29 @@ import 'package:universal_navigation_example/events.dart';
 @injectable
 class LoginPage extends StatefulWidget {
   static const routeName = '/login_page';
-  final NavigationController<TypeEvent> _navigationController;
+  final NavigationController<EventData> _navigationController;
 
   const LoginPage(this._navigationController);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var text = 'Initial Text';
+
+  @override
+  void initState() {
+    widget._navigationController.getStreamEventsData().listen((event) {
+      if (event.event == Event.Login) {
+        setState(() {
+          text = event.data;
+        });
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,10 +48,15 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.only(top: 16),
                   child: TextButton(
                     onPressed: () {
-                      widget._navigationController.pushGlobalPage(BottomNavigationPage.routeName);
+                      widget._navigationController
+                          .pushGlobalPage(BottomNavigationPage.routeName);
                     },
                     child: Text('ENTRY'),
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Text(text),
                 ),
               ],
             ),

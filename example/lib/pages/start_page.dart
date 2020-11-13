@@ -8,7 +8,7 @@ import 'package:universal_navigation_example/pages/login_page.dart';
 class StartPage extends StatefulWidget {
   static const routeName = '/start_page';
 
-  final NavigationController<TypeEvent> _navigationController;
+  final NavigationController<EventData> _navigationController;
 
   const StartPage(this._navigationController);
 
@@ -29,7 +29,7 @@ class _StartPageState extends State<StartPage> {
                 padding: const EdgeInsets.only(top: 16),
                 child: TextButton(
                   onPressed: () {
-                    widget._navigationController.pushGlobalPage(LoginPage.routeName);
+                    widget._navigationController.pushGlobalPage(LoginPage.routeName, eventData: EventData(event: Event.Login, data: 'Text from Start page'));
                   },
                   child: Text('NEXT'),
                 ),

@@ -12,6 +12,7 @@ import 'package:universal_navigation/navigation/models/navigation_flow_data/tabf
 
 import 'modules/bottom_nav_bridge_module.dart';
 import '../pages/default_bottom_nav_bridge.dart';
+import '../events.dart';
 import '../pages/tab_pages/first_tab_page.dart';
 import 'modules/global_flows_module.dart';
 import '../pages/login_page.dart';
@@ -20,7 +21,6 @@ import '../pages/tab_pages/second_tab_page.dart';
 import '../pages/start_page.dart';
 import 'modules/tab_flows_module.dart';
 import '../pages/tab_pages/third_tab_page.dart';
-import '../events.dart';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -37,13 +37,13 @@ GetIt $initGetIt(
   gh.factory<DefaultBottomNavBridge>(
       () => bottomNavBridgeModule.getDefaultBottomNavBridge);
   gh.factory<FirstTabPage>(
-      () => FirstTabPage(get<NavigationController<TypeEvent>>()));
+      () => FirstTabPage(get<NavigationController<EventData>>()));
   gh.factory<LoginPage>(
-      () => LoginPage(get<NavigationController<TypeEvent>>()));
+      () => LoginPage(get<NavigationController<EventData>>()));
   gh.factory<NestedTabPage>(() => NestedTabPage());
   gh.factory<SecondTabPage>(() => SecondTabPage());
   gh.factory<StartPage>(
-      () => StartPage(get<NavigationController<TypeEvent>>()));
+      () => StartPage(get<NavigationController<EventData>>()));
   gh.factory<ThirdTabPage>(() => ThirdTabPage());
 
   // Eager singletons must be registered in the right order

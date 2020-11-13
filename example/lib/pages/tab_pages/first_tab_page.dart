@@ -6,7 +6,7 @@ import 'package:universal_navigation_example/pages/tab_pages/nested_tab_page.dar
 
 @injectable
 class FirstTabPage extends StatefulWidget {
-  final NavigationController<TypeEvent> _navigationController;
+  final NavigationController<EventData> _navigationController;
 
   const FirstTabPage(this._navigationController);
   @override

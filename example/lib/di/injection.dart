@@ -11,7 +11,7 @@ final getIt = GetIt.instance;
 
 @injectableInit
 void configureInjection(String env) {
-  initUNavInjection<TypeEvent>(getIt, env);
+  initUNavInjection<EventData>(getIt, env);
   $initGetIt(getIt, environment: env);
   initUNavAppNavigatorInjection(getIt, env);
   _initBottomNavigationInjection(getIt, env);
