@@ -2,10 +2,10 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:universal_navigation/di/u_nav_configurator.dart';
 import 'package:universal_navigation/navigation/bottom_navigation_page.dart';
+import 'package:universal_navigation/navigation/core/bottom_navigation_builder.dart';
 import 'package:universal_navigation/navigation/core/tab_change_listener.dart';
 import 'package:universal_navigation_example/di/injection.config.dart';
 import 'package:universal_navigation_example/event_union.dart';
-import 'package:universal_navigation_example/pages/default_bottom_nav_bridge.dart';
 
 final getIt = GetIt.instance;
 
@@ -20,7 +20,7 @@ void configureInjection(String env) {
 GetIt _initBottomNavigationInjection(GetIt get, String env) {
   get.registerSingleton<BottomNavigationPage>(BottomNavigationPage(
     get<TabChangeListener>(),
-    get<DefaultBottomNavBridge>()
+    get<BottomNavigationBuilder>()
   ));
   return get;
 }

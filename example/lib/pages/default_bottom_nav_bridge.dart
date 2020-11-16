@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:universal_navigation/navigation/models/bottom_navigation_bridge.dart';
+import 'package:universal_navigation/navigation/core/bottom_navigation_builder.dart';
 import 'package:universal_navigation/navigation/models/navigation_flow_data/tabflow.dart';
 import 'package:universal_navigation/navigation/models/navigation_keys/bottom_nav_key.dart';
 
-class DefaultBottomNavBridge extends BottomNavigationBridge {
+class DefaultBottomNavBridge with BottomNavigationBuilder{
   final BottomNavKey bottomNavKey;
   final List<TabFlow> tabFlows;
   final Color backgroundColor;
@@ -31,5 +31,10 @@ class DefaultBottomNavBridge extends BottomNavigationBridge {
           .toList(),
       onTap: onTabChanged,
     );
+  }
+
+  @override
+  List<TabFlow> getTabFlows() {
+    return tabFlows;
   }
 }

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:universal_navigation/navigation/core/bottom_navigation_builder.dart';
 import 'package:universal_navigation/navigation/core/tab_change_listener.dart';
-import 'package:universal_navigation/navigation/models/bottom_navigation_bridge.dart';
 import 'package:universal_navigation/navigation/models/navigation_flow_data/tabflow.dart';
-import 'package:universal_navigation/navigation/models/navigation_keys/bottom_nav_key.dart';
 
 class BottomNavigationPage extends StatefulWidget {
   static const routeName = '/bottom_navigation';
 
   final TabChangeListener tabChangeNotifier;
-  final BottomNavigationBridge bottomNavigationBridge;
+  final BottomNavigationBuilder bottomNavBuilder;
 
   const BottomNavigationPage(
       this.tabChangeNotifier,
-      this.bottomNavigationBridge);
+      this.bottomNavBuilder);
 
   @override
   _BottomNavigationPageState createState() => _BottomNavigationPageState();
@@ -37,18 +36,18 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         body: IndexedStack(
           index: _currentIndexTab,
           children: widget
-              .bottomNavigationBridge
-              .tabFlows
+              .bottomNavBuilder
+              .getTabFlows()
               .map((tabFlow) => _buildIndexedTabFlow(tabFlow))
               .toList(),
         ),
-        bottomNavigationBar: widget.bottomNavigationBridge.build(_currentIndexTab, _onTabChanged),
+        bottomNavigationBar: widget.bottomNavBuilder.build(_currentIndexTab, _onTabChanged),
       ),
     );
   }
 
   void _notifyUpdateTab() {
-    _currentTabFlow = widget.bottomNavigationBridge.tabFlows[_currentIndexTab];
+    _currentTabFlow = widget.bottomNavBuilder.getTabFlows()[_currentIndexTab];
     widget.tabChangeNotifier.notifyTabChanged(_currentTabFlow);
   }
 

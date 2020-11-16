@@ -4,6 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+import 'package:universal_navigation/navigation/core/bottom_navigation_builder.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:universal_navigation/navigation/models/navigation_flow_data/globalflows.dart';
@@ -11,7 +12,6 @@ import 'package:universal_navigation/navigation/core/navigation_controller.dart'
 import 'package:universal_navigation/navigation/models/navigation_flow_data/tabflow.dart';
 
 import 'modules/bottom_nav_bridge_module.dart';
-import '../pages/default_bottom_nav_bridge.dart';
 import '../event_union.dart';
 import '../pages/tab_pages/first_tab_page.dart';
 import 'modules/global_flows_module.dart';
@@ -34,7 +34,7 @@ GetIt $initGetIt(
   final bottomNavBridgeModule = _$BottomNavBridgeModule();
   final globalFlowsModule = _$GlobalFlowsModule();
   final tabFlowsModule = _$TabFlowsModule();
-  gh.factory<DefaultBottomNavBridge>(
+  gh.factory<BottomNavigationBuilder>(
       () => bottomNavBridgeModule.getDefaultBottomNavBridge);
   gh.factory<FirstTabPage>(
       () => FirstTabPage(get<NavigationController<EventUnion>>()));

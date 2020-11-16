@@ -1,3 +1,7 @@
+## 0.1.0
+
+* New mixin BottomNavigationBuilder for integration own BottomNavigationBar inside BottomNavigationPage.
+
 ## 0.0.8
 
 * Updated example with transfer data using freezed package.
