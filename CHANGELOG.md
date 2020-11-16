@@ -1,3 +1,7 @@
+## 0.2.0
+
+* Added documentation with examples.
+
 ## 0.1.0
 
 * New mixin BottomNavigationBuilder for integration own BottomNavigationBar inside BottomNavigationPage.
