@@ -1,3 +1,8 @@
+## 0.4.0
+
+* Some code formatting.
+* Changed condition of method *_buildAdaptivePageRoute* inside **AppNavigator**.
+
 ## 0.3.0
 
 * Removed needed dependency *get_it*  for using lib.

@@ -9,9 +9,7 @@ class BottomNavigationPage extends StatefulWidget {
   final TabChangeListener tabChangeNotifier;
   final BottomNavigationBuilder bottomNavBuilder;
 
-  const BottomNavigationPage(
-      this.tabChangeNotifier,
-      this.bottomNavBuilder);
+  const BottomNavigationPage(this.tabChangeNotifier, this.bottomNavBuilder);
 
   @override
   _BottomNavigationPageState createState() => _BottomNavigationPageState();
@@ -35,13 +33,13 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
       child: Scaffold(
         body: IndexedStack(
           index: _currentIndexTab,
-          children: widget
-              .bottomNavBuilder
+          children: widget.bottomNavBuilder
               .getTabFlows()
               .map((tabFlow) => _buildIndexedTabFlow(tabFlow))
               .toList(),
         ),
-        bottomNavigationBar: widget.bottomNavBuilder.build(_currentIndexTab, _onTabChanged),
+        bottomNavigationBar:
+            widget.bottomNavBuilder.build(_currentIndexTab, _onTabChanged),
       ),
     );
   }

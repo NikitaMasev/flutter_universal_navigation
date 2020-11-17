@@ -20,12 +20,8 @@ class AppNavigator with TabChangeListener {
   final NavigationEvents _navigationEvents;
   TabFlow _currentTab;
 
-  AppNavigator(
-      this._tabFlows,
-      this._globalFlows,
-      this._bottomNavKey,
-      this._globalNavKey,
-      this._navigationEvents) {
+  AppNavigator(this._tabFlows, this._globalFlows, this._bottomNavKey,
+      this._globalNavKey, this._navigationEvents) {
     _navigationEvents
         .getGlobalNavigationEvents()
         .listen(_eventGlobalNavigation);
@@ -89,9 +85,11 @@ class AppNavigator with TabChangeListener {
     }
   }
 
-  void _eventPushTabNestedNavigation(String routeName, bool isFullscreenNavigation) {
+  void _eventPushTabNestedNavigation(
+      String routeName, bool isFullscreenNavigation) {
     if (!_globalFlows.flows.containsKey(routeName)) {
-      throw Exception('No such nested tab flow (route) for $routeName. Please check $routeName in dependency map for ${this.runtimeType.toString()}');
+      throw Exception(
+          'No such nested tab flow (route) for $routeName. Please check $routeName in dependency map for ${this.runtimeType.toString()}');
     }
 
     Navigator.of(_getCurrentContext, rootNavigator: isFullscreenNavigation)
@@ -107,19 +105,18 @@ class AppNavigator with TabChangeListener {
     @required WidgetBuilder builder,
     @required bool fullscreenDialog,
   }) =>
-      Platform.isAndroid
-          ? MaterialPageRoute(
+      Platform.isIOS
+          ? CupertinoPageRoute(
               builder: builder,
               fullscreenDialog: fullscreenDialog,
             )
-          : CupertinoPageRoute(
+          : MaterialPageRoute(
               builder: builder,
               fullscreenDialog: fullscreenDialog,
             );
 
-  BuildContext get _getCurrentContext => _currentTab
-      .navigatorKey
-      .currentContext;
+  BuildContext get _getCurrentContext =>
+      _currentTab.navigatorKey.currentContext;
 
   @override
   void notifyTabChanged(TabFlow tabFlow) {

@@ -18,12 +18,17 @@ final getIt = GetIt.instance;
 
 void initUNavInjection<T>(String env) {
   getIt.registerFactory<BehaviorSubject<T>>(() => BehaviorSubject<T>());
-  getIt.registerFactory<BehaviorSubject<NavigationTabArguments>>(() => BehaviorSubject<NavigationTabArguments>());
-  getIt.registerFactory<BehaviorSubject<NavigationArguments>>(() => BehaviorSubject<NavigationArguments>());
+  getIt.registerFactory<BehaviorSubject<NavigationTabArguments>>(
+      () => BehaviorSubject<NavigationTabArguments>());
+  getIt.registerFactory<BehaviorSubject<NavigationArguments>>(
+      () => BehaviorSubject<NavigationArguments>());
 
-  getIt.registerSingleton<EventNotifier<T>>(CoreEventNotifier<T>(getIt<BehaviorSubject<T>>()));
-  getIt.registerSingleton<BottomNavKey>(BottomNavKey(GlobalKey<NavigatorState>()));
-  getIt.registerSingleton<GlobalNavKey>(GlobalNavKey(GlobalKey<NavigatorState>()));
+  getIt.registerSingleton<EventNotifier<T>>(
+      CoreEventNotifier<T>(getIt<BehaviorSubject<T>>()));
+  getIt.registerSingleton<BottomNavKey>(
+      BottomNavKey(GlobalKey<NavigatorState>()));
+  getIt.registerSingleton<GlobalNavKey>(
+      GlobalNavKey(GlobalKey<NavigatorState>()));
 
   final navControllerEvents = NavigationControllerEvents<T>(
     getIt<BehaviorSubject<NavigationTabArguments>>(),
