@@ -1,3 +1,7 @@
+## 0.2.2
+
+* Updated documentation.
+
 ## 0.2.1
 
 * Updated demo gif.

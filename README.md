@@ -481,4 +481,4 @@ class _LoginPageState extends State<LoginPage> {
 
  Full example with navigation global and tab flows you can check by this [link](https://github.com/NikitaMasev/flutter_universal_navigation/tree/main/example).
 
-![Example working navigation](doc_resources/demo_navigation.gif)
+![demo_navigation](https://user-images.githubusercontent.com/22840281/99361382-0a365a00-28c3-11eb-80f8-77fcb3fb3340.gif)
