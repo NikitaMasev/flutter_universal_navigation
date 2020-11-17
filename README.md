@@ -7,7 +7,7 @@ To use this plugin, add `universal_navigation` as a [dependency in your pubspec.
 
 ## Getting Started
 
-Library have dependencies rxdart and get_it. And for using this library in your project you must integrate get_it, and for simplifying generating dependencies - [injectable](https://pub.dev/packages/injectable). An example with injectable will be presented below, but you can use only get_it.
+Library have dependencies rxdart and get_it, besides, variable *getIt* already initialized inside labrary and and is available for use. For auto generating dependencies we should use [injectable](https://pub.dev/packages/injectable). An example with injectable will be presented below, but you can use only get_it.
 
 ## Installation
 
@@ -15,7 +15,6 @@ Library have dependencies rxdart and get_it. And for using this library in your 
 dependencies:
   universal_navigation:
   injectable:
-  get_It:
 
 dev_dependencies:
   injectable_generator:
@@ -142,28 +141,22 @@ abstract class BottomNavBridgeModule {
 
 Creating new file with initialization all dependencies:
 ```dart
-///global instance get_it
-final getIt = GetIt.instance;
-
 @injectableInit /// annotation injectable 
 void configureInjection(String env) {
   ///presented inside library, initializing simple dependencies
-  initUNavInjection(getIt, env);
+  initUNavInjection(env);
   ///shoulde be generated after run: flutter packages pub run build_runner build --delete-conflicting-outputs
   ///contains created dependencies inside current project
-  $initGetIt(getIt, environment: env);
+  $initGetIt(environment: env);
   ///configure AppNavigator inside library
-  initUNavAppNavigatorInjection(getIt, env);
+  initUNavAppNavigatorInjection(env);
   ///registering Bottom Navigation Page with dependencies
-  _initBottomNavigationInjection(getIt, env);
+  _initBottomNavigationInjection(env);
 }
 
-GetIt _initBottomNavigationInjection(GetIt get, String env) {
-  get.registerSingleton<BottomNavigationPage>(BottomNavigationPage(
-    get<TabChangeListener>(),
-    get<BottomNavigationBuilder>()
-  ));
-  return get;
+void _initBottomNavigationInjection(String env) {
+  getIt.registerSingleton<BottomNavigationPage>(BottomNavigationPage(
+      getIt<TabChangeListener>(), getIt<BottomNavigationBuilder>()));
 }
 ```
 6. Modification *main.dart*.
@@ -271,23 +264,18 @@ enum Event {Login, FirstTab}
 ```
 And returning to **paragraph 5-th** you should modify code:
 ```dart
-final getIt = GetIt.instance;
-
 @injectableInit
 void configureInjection(String env) {
 ///this method also have generic, that define type of transfer data between pages
-  initUNavInjection<EventData>(getIt, env);
+  initUNavInjection<EventData>(env);
   $initGetIt(getIt, environment: env);
-  initUNavAppNavigatorInjection(getIt, env);
-  _initBottomNavigationInjection(getIt, env);
+  initUNavAppNavigatorInjection(env);
+  _initBottomNavigationInjection(env);
 }
 
-GetIt _initBottomNavigationInjection(GetIt get, String env) {
-  get.registerSingleton<BottomNavigationPage>(BottomNavigationPage(
-    get<TabChangeListener>(),
-    get<BottomNavigationBuilder>()
-  ));
-  return get;
+void _initBottomNavigationInjection(String env) {
+  getIt.registerSingleton<BottomNavigationPage>(BottomNavigationPage(
+      getIt<TabChangeListener>(), getIt<BottomNavigationBuilder>()));
 }
 ```
 
@@ -394,23 +382,18 @@ class _StartPageState extends State<StartPage> {
 
 **Injection**
 ```dart
-final getIt = GetIt.instance;
-
 @injectableInit
 void configureInjection(String env) {
 ///Changed to EventUnion type
-  initUNavInjection<EventUnion>(getIt, env);
+  initUNavInjection<EventUnion>(env);
   $initGetIt(getIt, environment: env);
-  initUNavAppNavigatorInjection(getIt, env);
-  _initBottomNavigationInjection(getIt, env);
+  initUNavAppNavigatorInjection(env);
+  _initBottomNavigationInjection(env);
 }
 
-GetIt _initBottomNavigationInjection(GetIt get, String env) {
-  get.registerSingleton<BottomNavigationPage>(BottomNavigationPage(
-    get<TabChangeListener>(),
-    get<BottomNavigationBuilder>()
-  ));
-  return get;
+void _initBottomNavigationInjection(String env) {
+  getIt.registerSingleton<BottomNavigationPage>(BottomNavigationPage(
+      getIt<TabChangeListener>(), getIt<BottomNavigationBuilder>()));
 }
 ```
 And in the **LoginPage** you can catch data like this:

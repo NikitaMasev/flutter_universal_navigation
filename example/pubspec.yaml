@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
   freezed_annotation: ^0.12.0
   injectable: ^1.0.5
-  get_it: ^5.0.1
   universal_navigation:
     path: ../
 

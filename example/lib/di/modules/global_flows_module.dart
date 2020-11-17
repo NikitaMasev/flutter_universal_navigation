@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
+import 'package:universal_navigation/di/u_nav_configurator.dart';
 import 'package:universal_navigation/navigation/bottom_navigation_page.dart';
 import 'package:universal_navigation/navigation/models/navigation_flow_data/globalflows.dart';
-import 'package:universal_navigation_example/di/injection.dart';
 import 'package:universal_navigation_example/pages/login_page.dart';
 import 'package:universal_navigation_example/pages/start_page.dart';
 import 'package:universal_navigation_example/pages/tab_pages/nested_tab_page.dart';

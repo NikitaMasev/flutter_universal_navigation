@@ -1,3 +1,10 @@
+## 0.3.0
+
+* Removed needed dependency *get_it*  for using lib.
+* Changed *initUNavInjection* and *initUNavAppNavigatorInjection* functions inside lib.
+* Updated example project.
+* Updated documentation.
+
 ## 0.2.2
 
 * Updated documentation.

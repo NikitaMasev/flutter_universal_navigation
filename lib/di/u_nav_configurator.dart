@@ -16,34 +16,31 @@ import 'package:universal_navigation/navigation/models/navigation_keys/global_na
 
 final getIt = GetIt.instance;
 
-GetIt initUNavInjection<T>(GetIt get, String env) {
-  get.registerFactory<BehaviorSubject<T>>(() => BehaviorSubject<T>());
-  get.registerFactory<BehaviorSubject<NavigationTabArguments>>(() => BehaviorSubject<NavigationTabArguments>());
-  get.registerFactory<BehaviorSubject<NavigationArguments>>(() => BehaviorSubject<NavigationArguments>());
+void initUNavInjection<T>(String env) {
+  getIt.registerFactory<BehaviorSubject<T>>(() => BehaviorSubject<T>());
+  getIt.registerFactory<BehaviorSubject<NavigationTabArguments>>(() => BehaviorSubject<NavigationTabArguments>());
+  getIt.registerFactory<BehaviorSubject<NavigationArguments>>(() => BehaviorSubject<NavigationArguments>());
 
-  get.registerSingleton<EventNotifier<T>>(CoreEventNotifier<T>(get<BehaviorSubject<T>>()));
-  get.registerSingleton<BottomNavKey>(BottomNavKey(GlobalKey<NavigatorState>()));
-  get.registerSingleton<GlobalNavKey>(GlobalNavKey(GlobalKey<NavigatorState>()));
+  getIt.registerSingleton<EventNotifier<T>>(CoreEventNotifier<T>(getIt<BehaviorSubject<T>>()));
+  getIt.registerSingleton<BottomNavKey>(BottomNavKey(GlobalKey<NavigatorState>()));
+  getIt.registerSingleton<GlobalNavKey>(GlobalNavKey(GlobalKey<NavigatorState>()));
 
   final navControllerEvents = NavigationControllerEvents<T>(
-    get<BehaviorSubject<NavigationTabArguments>>(),
-    get<BehaviorSubject<NavigationArguments>>(),
-    get<EventNotifier<T>>(),
+    getIt<BehaviorSubject<NavigationTabArguments>>(),
+    getIt<BehaviorSubject<NavigationArguments>>(),
+    getIt<EventNotifier<T>>(),
   );
 
-  get.registerSingleton<NavigationController<T>>(navControllerEvents);
-  get.registerSingleton<NavigationEvents>(navControllerEvents);
-
-  return get;
+  getIt.registerSingleton<NavigationController<T>>(navControllerEvents);
+  getIt.registerSingleton<NavigationEvents>(navControllerEvents);
 }
 
-GetIt initUNavAppNavigatorInjection(GetIt get, String env) {
-  get.registerSingleton<TabChangeListener>(AppNavigator(
-    get<List<TabFlow>>(),
-    get<GlobalFlows>(),
-    get<BottomNavKey>(),
-    get<GlobalNavKey>(),
-    get<NavigationEvents>(),
+void initUNavAppNavigatorInjection(String env) {
+  getIt.registerSingleton<TabChangeListener>(AppNavigator(
+    getIt<List<TabFlow>>(),
+    getIt<GlobalFlows>(),
+    getIt<BottomNavKey>(),
+    getIt<GlobalNavKey>(),
+    getIt<NavigationEvents>(),
   ));
-  return get;
 }
