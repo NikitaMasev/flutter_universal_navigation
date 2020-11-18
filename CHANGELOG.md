@@ -1,3 +1,7 @@
+## 0.4.4
+
+* Some code formatting.
+
 ## 0.4.3
 
 * Some code formatting.

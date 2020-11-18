@@ -4,7 +4,6 @@ import 'package:universal_navigation/navigation/core/navigation_controller_event
 ///Mixin that's implemented by [NavigationControllerEvents] and used for emitting navigation events
 ///with some generic data. It can be used inside pages and blocs.
 mixin NavigationController<T> {
-
   ///Push new page inside [BottomNavigationPage], which call 'nested tab navigation'.
   ///After calling this method current page will be pushed to stack pages and
   ///the new page will be shown over the previous one. But bottom navigation bar also will remain visible.

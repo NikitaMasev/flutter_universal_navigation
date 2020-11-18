@@ -15,7 +15,6 @@ import 'package:universal_navigation/navigation/models/navigation_type_events.da
 ///Also allow to get stream events data.
 class NavigationControllerEvents<T>
     with NavigationController<T>, NavigationEvents {
-
   ///Rx wrapper data class of [NavigationTabArguments].
   ///Used for transfer nested navigation events to [AppNavigator].
   final BehaviorSubject<NavigationTabArguments> _tabNestedNavigationEvents;
@@ -27,10 +26,8 @@ class NavigationControllerEvents<T>
   ///Mixin that allow to add some event data and subscribe to listening events.
   final EventNotifier _notifier;
 
-  NavigationControllerEvents(
-      this._tabNestedNavigationEvents,
-      this._globalNavigationEvents,
-      this._notifier);
+  NavigationControllerEvents(this._tabNestedNavigationEvents,
+      this._globalNavigationEvents, this._notifier);
 
   @override
   void pushTabNestedPage(String routeName,
