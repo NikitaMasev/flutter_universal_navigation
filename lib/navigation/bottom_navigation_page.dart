@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:universal_navigation/navigation/core/app_navigator.dart';
 import 'package:universal_navigation/navigation/core/bottom_navigation_builder.dart';
 import 'package:universal_navigation/navigation/core/tab_change_listener.dart';
 import 'package:universal_navigation/navigation/models/navigation_flow_data/tabflow.dart';
 
+/// This was already included to remove boilerplate code, but to preserve the customization of the BottomNavigationBar, the [BottomNavigationBuilder] mixin was introduced.
 class BottomNavigationPage extends StatefulWidget {
+  ///Identifier of this page.
   static const routeName = '/bottom_navigation';
 
+  ///Mixin for notifying [AppNavigator] about changing tab item.
   final TabChangeListener tabChangeNotifier;
+  ///Mixing for build certain realization of BottomNavigationBar. Also contain list of tab flow (root pages of bottom navigation bar item).
   final BottomNavigationBuilder bottomNavBuilder;
 
   const BottomNavigationPage(this.tabChangeNotifier, this.bottomNavBuilder);
@@ -21,6 +26,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
 
   @override
   void initState() {
+    ///It's needed for notifying [AppNavigator] about first installed bottom bar item.
     _notifyUpdateTab();
     super.initState();
   }
@@ -44,11 +50,14 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     );
   }
 
+  ///Notifying [AppNavigator] about changing tab. Also changed _currentTabFlow variable.
   void _notifyUpdateTab() {
     _currentTabFlow = widget.bottomNavBuilder.getTabFlows()[_currentIndexTab];
     widget.tabChangeNotifier.notifyTabChanged(_currentTabFlow);
   }
 
+  /// Function that handle click on tab bar item, change _currentIndexTab variable and call [_notifyUpdateTab].
+  /// It also resets the stack on the screen on which the item was pressed again.
   void _onTabChanged(int index) {
     setState(() {
       if (_currentIndexTab != index) {
@@ -61,6 +70,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     });
   }
 
+  ///Builder function of new page on certain tab bar item.
   Widget _buildIndexedTabFlow(TabFlow tabFlow) => Navigator(
       // The key enables us to access the Navigator's state inside the
       // onWillPop callback and for emptying its stack when a tab is

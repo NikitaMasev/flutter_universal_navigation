@@ -1,3 +1,8 @@
+## 0.4.1
+
+* Some code formatting.
+* Added documentation of  **BottomNavigationPage**.
+
 ## 0.4.0
 
 * Some code formatting.
