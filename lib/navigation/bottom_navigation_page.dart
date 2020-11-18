@@ -11,6 +11,7 @@ class BottomNavigationPage extends StatefulWidget {
 
   ///Mixin for notifying [AppNavigator] about changing tab item.
   final TabChangeListener tabChangeNotifier;
+
   ///Mixing for build certain realization of BottomNavigationBar. Also contain list of tab flow (root pages of bottom navigation bar item).
   final BottomNavigationBuilder bottomNavBuilder;
 

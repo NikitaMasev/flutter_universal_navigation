@@ -1,3 +1,8 @@
+## 0.4.2
+
+* Some code formatting.
+* Added documentation of  **models** package.
+
 ## 0.4.1
 
 * Some code formatting.

@@ -6,18 +6,18 @@ import 'package:universal_navigation/navigation/models/navigation_data/navigatio
 import 'package:universal_navigation/navigation/models/navigation_data/navigation_tab_arguments.dart';
 import 'package:universal_navigation/navigation/models/navigation_type_events.dart';
 
-class NavigationControllerEvents<T> with NavigationController<T>, NavigationEvents {
+class NavigationControllerEvents<T>
+    with NavigationController<T>, NavigationEvents {
   final BehaviorSubject<NavigationTabArguments> _tabNestedNavigationEvents;
   final BehaviorSubject<NavigationArguments> _globalNavigationEvents;
   final EventNotifier _notifier;
 
-  NavigationControllerEvents(
-      this._tabNestedNavigationEvents,
-      this._globalNavigationEvents,
-      this._notifier);
+  NavigationControllerEvents(this._tabNestedNavigationEvents,
+      this._globalNavigationEvents, this._notifier);
 
   @override
-  void pushTabNestedPage(String routeName, {bool isFullscreenNavigation = false, T eventData}) {
+  void pushTabNestedPage(String routeName,
+      {bool isFullscreenNavigation = false, T eventData}) {
     _pushEventData(eventData);
     _tabNestedNavigationEvents.add(NavigationTabArguments(
         routeName: routeName,
