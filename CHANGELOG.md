@@ -1,3 +1,8 @@
+## 0.4.3
+
+* Some code formatting.
+* Added documentation of  **navigation** package without **AppNavigator**.
+
 ## 0.4.2
 
 * Some code formatting.
