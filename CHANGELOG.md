@@ -1,3 +1,9 @@
+## 0.6.1
+
+* Export all imports of library into **universal_navigation.dart**.
+* Fix example project.
+* Fix web support.
+
 ## 0.6.0
 
 * Added support linux (tested on Ubuntu 20.04.1 LTS).
