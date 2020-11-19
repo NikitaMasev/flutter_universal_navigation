@@ -4,12 +4,9 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-import 'package:universal_navigation/navigation/core/bottom_navigation_builder.dart';
+import 'package:universal_navigation/universal_navigation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:universal_navigation/navigation/models/navigation_flow_data/globalflows.dart';
-import 'package:universal_navigation/navigation/core/navigation_controller.dart';
-import 'package:universal_navigation/navigation/models/navigation_flow_data/tabflow.dart';
 
 import 'modules/bottom_nav_bridge_module.dart';
 import '../event_union.dart';

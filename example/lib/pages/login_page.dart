@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:universal_navigation/navigation/bottom_navigation_page.dart';
-import 'package:universal_navigation/navigation/core/navigation_controller.dart';
+import 'package:universal_navigation/universal_navigation.dart';
 import 'package:universal_navigation_example/event_union.dart';
 
 @injectable

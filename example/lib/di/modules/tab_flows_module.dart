@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:universal_navigation/di/u_nav_configurator.dart';
-import 'package:universal_navigation/navigation/models/navigation_flow_data/tabflow.dart';
+import 'package:universal_navigation/universal_navigation.dart';
 import 'package:universal_navigation_example/pages/tab_pages/first_tab_page.dart';
 import 'package:universal_navigation_example/pages/tab_pages/second_tab_page.dart';
 import 'package:universal_navigation_example/pages/tab_pages/third_tab_page.dart';

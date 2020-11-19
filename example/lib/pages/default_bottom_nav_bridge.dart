@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:universal_navigation/navigation/core/bottom_navigation_builder.dart';
-import 'package:universal_navigation/navigation/models/navigation_flow_data/tabflow.dart';
-import 'package:universal_navigation/navigation/models/navigation_keys/bottom_nav_key.dart';
+import 'package:universal_navigation/universal_navigation.dart';
 
 class DefaultBottomNavBridge with BottomNavigationBuilder{
   final BottomNavKey bottomNavKey;
