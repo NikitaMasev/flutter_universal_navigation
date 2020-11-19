@@ -1,3 +1,7 @@
+## 0.6.2
+
+* Some code formatting.
+
 ## 0.6.1
 
 * Export all imports of library into **universal_navigation.dart**.

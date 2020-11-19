@@ -15,4 +15,3 @@ export 'navigation/models/navigation_keys/global_nav_key.dart';
 export 'navigation/bottom_navigation_page.dart';
 
 export 'di/u_nav_configurator.dart';
-
