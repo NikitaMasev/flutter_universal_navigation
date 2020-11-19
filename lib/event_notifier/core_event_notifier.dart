@@ -3,7 +3,6 @@ import 'package:universal_navigation/navigation/core/navigation_controller_event
 
 ///Mixin for pushing and getting generic data events.
 mixin EventNotifier<T> {
-
   ///Add new event data
   void sink(T eventData);
 

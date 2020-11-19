@@ -1,3 +1,7 @@
+## 0.5.1
+
+* Some code formatting.
+
 ## 0.5.0
 
 * Added documentation of **AppNavigator**,**CoreEventNotifier** and **u_nav_configurator.dart** .
