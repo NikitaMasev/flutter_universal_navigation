@@ -1,7 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:universal_navigation/navigation/bottom_navigation_page.dart';
+import 'package:universal_navigation/navigation/core/navigation_controller_events.dart';
 import 'package:universal_navigation/navigation/core/navigation_events.dart';
 import 'package:universal_navigation/navigation/core/tab_change_listener.dart';
 import 'package:universal_navigation/navigation/models/navigation_data/navigation_arguments.dart';
@@ -12,6 +12,9 @@ import 'package:universal_navigation/navigation/models/navigation_keys/bottom_na
 import 'package:universal_navigation/navigation/models/navigation_keys/global_nav_key.dart';
 import 'package:universal_navigation/navigation/models/navigation_type_events.dart';
 
+///The core of universal navigation library.
+///Served for listening navigation events from [NavigationControllerEvents] and navigating to page with [BottomNavigationPage] or without it.
+///Implement [TabChangeListener] mixin for listening about changing root of bottom navigation bar item.
 class AppNavigator with TabChangeListener {
   final List<TabFlow> _tabFlows;
   final GlobalFlows _globalFlows;
@@ -30,6 +33,8 @@ class AppNavigator with TabChangeListener {
         .listen(_eventTabNestedNavigation);
   }
 
+  ///Listen global(without [BottomNavigationPage]) navigation events and defining type of navigation event.
+  ///Also catching one tab event with [BottomNavigationPage] - navigate to tab.
   void _eventGlobalNavigation(NavigationArguments navigationArguments) {
     switch (navigationArguments.navigationTypeEvent) {
       case NavigationTypeEvent.PUSH:
@@ -48,15 +53,20 @@ class AppNavigator with TabChangeListener {
     }
   }
 
+  ///Pushing new global(without [BottomNavigationPage]) page and putting the current page on the stack.
   void _eventPushGlobalNavigation(String routeName) =>
       _globalNavKey.key.currentState.pushNamed(routeName);
 
+  ///Replacing the current page with a new one(without [BottomNavigationPage]).
   void _eventPushReplacementGlobalNavigation(String routeName) =>
       _globalNavKey.key.currentState
           .pushNamedAndRemoveUntil(routeName, ModalRoute.withName('/'));
 
+  ///Remove current global(without [BottomNavigationPage]) page from stack.
   void _eventPopGlobalNavigation() => _globalNavKey.key.currentState.pop();
 
+  ///Navigate to certain tab by [tabIndex].
+  ///Also support deleting certain tab stack of pages by [deleteRouteTabIndex].
   void _eventNavigateToTab(int tabIndex, int deleteRouteTabIndex) {
     if (deleteRouteTabIndex != null) {
       _tabFlows[deleteRouteTabIndex]
@@ -67,6 +77,7 @@ class AppNavigator with TabChangeListener {
     (_bottomNavKey.key.currentWidget as BottomNavigationBar).onTap(tabIndex);
   }
 
+  ///Listen tab nested(with [BottomNavigationPage]) navigation events and defining type of navigation event.
   void _eventTabNestedNavigation(NavigationTabArguments navigationArguments) {
     final routeName = navigationArguments.routeName;
     final isFullscreenNavigation = navigationArguments.isFullscreenNavigation;
@@ -85,6 +96,8 @@ class AppNavigator with TabChangeListener {
     }
   }
 
+  ///Push new page to the stack of bottom navigation bar item.
+  ///With pushing new page, [BottomNavigationPage] is also remain in screen.
   void _eventPushTabNestedNavigation(
       String routeName, bool isFullscreenNavigation) {
     if (!_globalFlows.flows.containsKey(routeName)) {
@@ -99,13 +112,15 @@ class AppNavigator with TabChangeListener {
     ));
   }
 
+  ///Delete current page from stack of bottom navigation bar item.
   void _eventPopTabNestedNavigation() => Navigator.of(_getCurrentContext).pop();
 
+  ///Builder of tab nested page depending on the platform.
   PageRoute<T> _buildAdaptivePageRoute<T>({
     @required WidgetBuilder builder,
     @required bool fullscreenDialog,
   }) =>
-      Platform.isIOS
+      _isIos
           ? CupertinoPageRoute(
               builder: builder,
               fullscreenDialog: fullscreenDialog,
@@ -115,9 +130,15 @@ class AppNavigator with TabChangeListener {
               fullscreenDialog: fullscreenDialog,
             );
 
+  ///Defining type of platform for making different transition on IOS and other platforms.
+  bool get _isIos =>
+      Theme.of(_globalNavKey.key.currentContext).platform == TargetPlatform.iOS;
+
+  ///Getting current context depending on current root of bottom navigation bar item.
   BuildContext get _getCurrentContext =>
       _currentTab.navigatorKey.currentContext;
 
+  ///Changing [_currentTab] by changing bottom navigation bar item in [BottomNavigationPage].
   @override
   void notifyTabChanged(TabFlow tabFlow) {
     _currentTab = tabFlow;

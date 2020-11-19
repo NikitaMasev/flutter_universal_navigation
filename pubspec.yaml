@@ -1,6 +1,6 @@
 name: universal_navigation
 description: The navigation core for flutter apps. Allows to use bottom navigation and transfer some data between blocs and pages.
-version: 0.4.4
+version: 0.5.0
 homepage: https://github.com/NikitaMasev/flutter_universal_navigation
 
 environment:
@@ -34,6 +34,12 @@ flutter:
         package: com.nikitamasev.universal_navigation
         pluginClass: UniversalNavigationPlugin
       ios:
+        pluginClass: UniversalNavigationPlugin
+      macos:
+        pluginClass: UniversalNavigationPlugin
+      windows:
+        pluginClass: UniversalNavigationPlugin
+      web:
         pluginClass: UniversalNavigationPlugin
 
   # To add assets to your plugin package, add an assets section, like this:

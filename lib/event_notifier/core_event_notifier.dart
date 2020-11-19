@@ -1,12 +1,20 @@
 import 'package:rxdart/rxdart.dart';
+import 'package:universal_navigation/navigation/core/navigation_controller_events.dart';
 
+///Mixin for pushing and getting generic data events.
 mixin EventNotifier<T> {
+
+  ///Add new event data
   void sink(T eventData);
 
+  ///Get stream of events data
   Stream<T> getStreamEvents();
 }
 
+///Core of events data.
+///It's can used as a single part from [NavigationControllerEvents], but for convenience it was included in the [NavigationControllerEvents].
 class CoreEventNotifier<T> with EventNotifier<T> {
+  ///Rx wrapper of generic type events.
   final BehaviorSubject<T> _controllerEventsData;
 
   CoreEventNotifier(this._controllerEventsData);

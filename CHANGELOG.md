@@ -1,3 +1,8 @@
+## 0.5.0
+
+* Added documentation of **AppNavigator**,**CoreEventNotifier** and **u_nav_configurator.dart** .
+* Added supprot macos, windows and web.
+
 ## 0.4.4
 
 * Some code formatting.

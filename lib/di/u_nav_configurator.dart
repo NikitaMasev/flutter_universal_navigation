@@ -14,8 +14,10 @@ import 'package:universal_navigation/navigation/models/navigation_flow_data/tabf
 import 'package:universal_navigation/navigation/models/navigation_keys/bottom_nav_key.dart';
 import 'package:universal_navigation/navigation/models/navigation_keys/global_nav_key.dart';
 
+///Global variable [getIt], that should be used in your project.
 final getIt = GetIt.instance;
 
+///Registration of dependencies independent of user settings, except for generic.
 void initUNavInjection<T>(String env) {
   getIt.registerFactory<BehaviorSubject<T>>(() => BehaviorSubject<T>());
   getIt.registerFactory<BehaviorSubject<NavigationTabArguments>>(
@@ -40,6 +42,7 @@ void initUNavInjection<T>(String env) {
   getIt.registerSingleton<NavigationEvents>(navControllerEvents);
 }
 
+///Registering the core of universal navigation as dependency.
 void initUNavAppNavigatorInjection(String env) {
   getIt.registerSingleton<TabChangeListener>(AppNavigator(
     getIt<List<TabFlow>>(),
