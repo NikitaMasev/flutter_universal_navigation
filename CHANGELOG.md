@@ -1,3 +1,7 @@
+## 0.6.0
+
+* Added support linux (tested on Ubuntu 20.04.1 LTS).
+
 ## 0.5.1
 
 * Some code formatting.
