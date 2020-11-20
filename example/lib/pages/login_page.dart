@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    widget._navigationController.getStreamEventsData().listen((event) {
+    widget._navigationController.getEvents().listen((event) {
       event.when(() => null, login: (e) {
         setState(() {
           text = e;

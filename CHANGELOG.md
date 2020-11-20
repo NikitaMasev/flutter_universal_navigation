@@ -1,3 +1,8 @@
+## 0.7.0
+
+* *Stream<T> getStreamEventsData()* changed to *Stream<T> getEvents()* in **NavigationController**.
+* Added new API method *void sinkEvent(T eventData)* in **NavigationController**.
+
 ## 0.6.2
 
 * Some code formatting.

@@ -102,7 +102,12 @@ class NavigationControllerEvents<T>
       _tabNestedNavigationEvents;
 
   @override
-  Stream<T> getStreamEventsData() {
+  Stream<T> getEvents() {
     return _notifier.getStreamEvents();
+  }
+
+  @override
+  void sinkEvent(T eventData) {
+    _notifier.sink(eventData);
   }
 }

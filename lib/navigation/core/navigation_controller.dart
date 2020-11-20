@@ -28,5 +28,8 @@ mixin NavigationController<T> {
   void popGlobalPage();
 
   ///Getting stream events data for listening and subscribing to all events.
-  Stream<T> getStreamEventsData();
+  Stream<T> getEvents();
+
+  ///Add new event data
+  void sinkEvent(T eventData);
 }
