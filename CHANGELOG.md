@@ -1,3 +1,7 @@
+## 0.7.1
+
+* Added info about platform compatibility.
+
 ## 0.7.0
 
 * *Stream<T> getStreamEventsData()* changed to *Stream<T> getEvents()* in **NavigationController**.

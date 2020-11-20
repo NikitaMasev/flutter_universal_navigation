@@ -1,8 +1,21 @@
 # universal_navigation
 
-The navigation core for flutter apps. Allows to use bottom navigation and transfer some data between blocs.
+The navigation core for flutter apps. Allows to use bottom navigation and transfer some data between blocs and pages.
+
+## Platform compatibility
+
+Plugin was tested on following platforms:
+
+* Android;
+* IOS;
+* Windows 10 64 bit;
+* Linux (Ubuntu 20.04.1 LTS);
+* Web (Chrome).
+
+The support of MacOS is not guaranteed, but you can try to build it.
 
 ## Usage
+
 To use this plugin, add `universal_navigation` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
 ## Getting Started
