@@ -4,9 +4,10 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-import 'package:universal_navigation/universal_navigation.dart';
+import 'package:universal_navigation/navigation/core/bottom_navigation_builder.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:universal_navigation/universal_navigation.dart';
 
 import 'modules/bottom_nav_bridge_module.dart';
 import '../event_union.dart';

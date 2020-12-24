@@ -1,3 +1,7 @@
+## 0.7.2
+
+* Updated *get_it* and *rxdart* versions.
+
 ## 0.7.1
 
 * Added info about platform compatibility.

@@ -33,26 +33,26 @@ const $EventUnion = _$EventUnionTearOff();
 /// @nodoc
 mixin _$EventUnion {
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(), {
-    @required Result login(String data),
+  TResult when<TResult extends Object>(
+    TResult $default(), {
+    @required TResult login(String data),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(), {
-    Result login(String data),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(), {
+    TResult login(String data),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(Empty value), {
-    @required Result login(Login value),
+  TResult map<TResult extends Object>(
+    TResult $default(Empty value), {
+    @required TResult login(Login value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(Empty value), {
-    Result login(Login value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(Empty value), {
+    TResult login(Login value),
+    @required TResult orElse(),
   });
 }
 
@@ -113,9 +113,9 @@ class _$Empty with DiagnosticableTreeMixin implements Empty {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(), {
-    @required Result login(String data),
+  TResult when<TResult extends Object>(
+    TResult $default(), {
+    @required TResult login(String data),
   }) {
     assert($default != null);
     assert(login != null);
@@ -124,10 +124,10 @@ class _$Empty with DiagnosticableTreeMixin implements Empty {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(), {
-    Result login(String data),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(), {
+    TResult login(String data),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
@@ -138,9 +138,9 @@ class _$Empty with DiagnosticableTreeMixin implements Empty {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(Empty value), {
-    @required Result login(Login value),
+  TResult map<TResult extends Object>(
+    TResult $default(Empty value), {
+    @required TResult login(Login value),
   }) {
     assert($default != null);
     assert(login != null);
@@ -149,10 +149,10 @@ class _$Empty with DiagnosticableTreeMixin implements Empty {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(Empty value), {
-    Result login(Login value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(Empty value), {
+    TResult login(Login value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
@@ -230,9 +230,9 @@ class _$Login with DiagnosticableTreeMixin implements Login {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(), {
-    @required Result login(String data),
+  TResult when<TResult extends Object>(
+    TResult $default(), {
+    @required TResult login(String data),
   }) {
     assert($default != null);
     assert(login != null);
@@ -241,10 +241,10 @@ class _$Login with DiagnosticableTreeMixin implements Login {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(), {
-    Result login(String data),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(), {
+    TResult login(String data),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (login != null) {
@@ -255,9 +255,9 @@ class _$Login with DiagnosticableTreeMixin implements Login {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(Empty value), {
-    @required Result login(Login value),
+  TResult map<TResult extends Object>(
+    TResult $default(Empty value), {
+    @required TResult login(Login value),
   }) {
     assert($default != null);
     assert(login != null);
@@ -266,10 +266,10 @@ class _$Login with DiagnosticableTreeMixin implements Login {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(Empty value), {
-    Result login(Login value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(Empty value), {
+    TResult login(Login value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (login != null) {
