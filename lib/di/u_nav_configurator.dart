@@ -7,6 +7,7 @@ import 'package:universal_navigation/navigation/core/navigation_controller.dart'
 import 'package:universal_navigation/navigation/core/navigation_controller_events.dart';
 import 'package:universal_navigation/navigation/core/navigation_events.dart';
 import 'package:universal_navigation/navigation/core/tab_change_listener.dart';
+import 'package:universal_navigation/navigation/core/tab_changer.dart';
 import 'package:universal_navigation/navigation/models/navigation_data/navigation_arguments.dart';
 import 'package:universal_navigation/navigation/models/navigation_data/navigation_tab_arguments.dart';
 import 'package:universal_navigation/navigation/models/navigation_flow_data/globalflows.dart';
@@ -47,8 +48,8 @@ void initUNavAppNavigatorInjection(String env) {
   getIt.registerSingleton<TabChangeListener>(AppNavigator(
     getIt<List<TabFlow>>(),
     getIt<GlobalFlows>(),
-    getIt<BottomNavKey>(),
     getIt<GlobalNavKey>(),
     getIt<NavigationEvents>(),
+    getIt<TabChanger>(),
   ));
 }

@@ -5,8 +5,8 @@ import 'package:universal_navigation/navigation/core/navigation_controller_event
 import 'package:universal_navigation/navigation/models/navigation_data/navigation_arguments.dart';
 import 'package:universal_navigation/navigation/models/navigation_data/navigation_tab_arguments.dart';
 
-///Mixin for getting by [AppNavigator] from [NavigationControllerEvents] navigation events.
-mixin NavigationEvents {
+///For getting by [AppNavigator] from [NavigationControllerEvents] navigation events.
+abstract class NavigationEvents {
   ///Method for getting only tab nested events.
   BehaviorSubject<NavigationTabArguments> getTabNestedNavigationEvents();
 

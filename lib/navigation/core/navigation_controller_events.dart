@@ -14,7 +14,7 @@ import 'package:universal_navigation/navigation/models/navigation_type_events.da
 ///It's generating wrapper data classes [NavigationTabArguments], [NavigationArguments] for [AppNavigator].
 ///Also allow to get stream events data.
 class NavigationControllerEvents<T>
-    with NavigationController<T>, NavigationEvents {
+    implements NavigationController<T>, NavigationEvents {
   ///Rx wrapper data class of [NavigationTabArguments].
   ///Used for transfer nested navigation events to [AppNavigator].
   final BehaviorSubject<NavigationTabArguments> _tabNestedNavigationEvents;

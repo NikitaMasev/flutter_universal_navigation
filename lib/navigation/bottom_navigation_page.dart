@@ -9,13 +9,16 @@ class BottomNavigationPage extends StatefulWidget {
   ///Identifier of this page.
   static const routeName = '/bottom_navigation';
 
-  ///Mixin for notifying [AppNavigator] about changing tab item.
+  ///For notifying [AppNavigator] about changing tab item.
   final TabChangeListener tabChangeNotifier;
 
-  ///Mixing for build certain realization of BottomNavigationBar. Also contain list of tab flow (root pages of bottom navigation bar item).
+  ///For build certain realization of BottomNavigationBar. Also contain list of tab flow (root pages of bottom navigation bar item).
   final BottomNavigationBuilder bottomNavBuilder;
 
-  const BottomNavigationPage(this.tabChangeNotifier, this.bottomNavBuilder);
+  const BottomNavigationPage(
+    this.tabChangeNotifier,
+    this.bottomNavBuilder,
+  );
 
   @override
   _BottomNavigationPageState createState() => _BottomNavigationPageState();

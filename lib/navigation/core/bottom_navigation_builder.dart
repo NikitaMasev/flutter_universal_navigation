@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:universal_navigation/navigation/models/navigation_flow_data/tabflow.dart';
 
-///Mixing for build certain realization of BottomNavigationBar.
+///For build certain realization of BottomNavigationBar.
 ///Also implementation should contain list of tab flow (root pages of bottom navigation bar item).
-mixin BottomNavigationBuilder {
+abstract class BottomNavigationBuilder {
   ///Will be called inside [BottomNavigationPage] for building concrete implementation of bottom navigation bar.
   Widget build(int currentIndexTab, Function(int) onTabChanged);
 

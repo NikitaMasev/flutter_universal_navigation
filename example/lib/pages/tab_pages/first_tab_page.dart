@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:universal_navigation/universal_navigation.dart';
-import 'package:universal_navigation_example/event_union.dart';
+import 'package:universal_navigation_example/events.dart';
 import 'package:universal_navigation_example/pages/tab_pages/nested_tab_page.dart';
 
 @injectable
 class FirstTabPage extends StatefulWidget {
-  final NavigationController<EventUnion> _navigationController;
+  final NavigationController<EventData> _navigationController;
 
   const FirstTabPage(this._navigationController);
+
   @override
   _FirstTabPageState createState() => _FirstTabPageState();
 }
@@ -26,9 +27,18 @@ class _FirstTabPageState extends State<FirstTabPage> {
                 padding: const EdgeInsets.only(top: 16),
                 child: TextButton(
                   onPressed: () {
-                    widget._navigationController.pushTabNestedPage(NestedTabPage.routeName);
+                    widget._navigationController
+                        .pushTabNestedPage(NestedTabPage.routeName);
                   },
                   child: Text('NEXT TO NESTED PAGE'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: ElevatedButton(
+                  onPressed: () =>
+                      widget._navigationController.navigateToTab(1),
+                  child: Text('To second tab'),
                 ),
               ),
             ],

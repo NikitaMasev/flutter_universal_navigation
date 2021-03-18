@@ -4,6 +4,7 @@ import 'package:universal_navigation/navigation/bottom_navigation_page.dart';
 import 'package:universal_navigation/navigation/core/navigation_controller_events.dart';
 import 'package:universal_navigation/navigation/core/navigation_events.dart';
 import 'package:universal_navigation/navigation/core/tab_change_listener.dart';
+import 'package:universal_navigation/navigation/core/tab_changer.dart';
 import 'package:universal_navigation/navigation/models/navigation_data/navigation_arguments.dart';
 import 'package:universal_navigation/navigation/models/navigation_data/navigation_tab_arguments.dart';
 import 'package:universal_navigation/navigation/models/navigation_flow_data/globalflows.dart';
@@ -14,17 +15,22 @@ import 'package:universal_navigation/navigation/models/navigation_type_events.da
 
 ///The core of universal navigation library.
 ///Served for listening navigation events from [NavigationControllerEvents] and navigating to page with [BottomNavigationPage] or without it.
-///Implement [TabChangeListener] mixin for listening about changing root of bottom navigation bar item.
-class AppNavigator with TabChangeListener {
+///Implement [TabChangeListener] for listening about changing root of bottom navigation bar item.
+class AppNavigator implements TabChangeListener {
   final List<TabFlow> _tabFlows;
   final GlobalFlows _globalFlows;
-  final BottomNavKey _bottomNavKey;
   final GlobalNavKey _globalNavKey;
   final NavigationEvents _navigationEvents;
+  final TabChanger _tabChanger;
   TabFlow _currentTab;
 
-  AppNavigator(this._tabFlows, this._globalFlows, this._bottomNavKey,
-      this._globalNavKey, this._navigationEvents) {
+  AppNavigator(
+    this._tabFlows,
+    this._globalFlows,
+    this._globalNavKey,
+    this._navigationEvents,
+    this._tabChanger,
+  ) {
     _navigationEvents
         .getGlobalNavigationEvents()
         .listen(_eventGlobalNavigation);
@@ -74,7 +80,7 @@ class AppNavigator with TabChangeListener {
           .currentState
           .popUntil((route) => route.isFirst);
     }
-    (_bottomNavKey.key.currentWidget as BottomNavigationBar).onTap(tabIndex);
+    _tabChanger.onTap(tabIndex);
   }
 
   ///Listen tab nested(with [BottomNavigationPage]) navigation events and defining type of navigation event.
