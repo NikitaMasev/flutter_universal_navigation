@@ -93,16 +93,17 @@ Tab flows is a module, that contain list of root bottom bar pages (or blocs). Fo
 
 Also TabFlow have 5-th parameter - assetImage, that can be used instead of iconData.
 
-3. Create new file that's implement mixin **BottomNavigationBuilder** - one of the dependencies for BottomNavigationPage.
+3. Create new file that's implement **BottomNavigationBuilder, TabChanger**. BottomNavigationBuilder is interface used by BottomNavigationPage. TabChanger is interface used by AppNavigator for navigation to concrete tab.
 ```dart
-class DefaultBottomNavBridge with BottomNavigationBuilder{
+class DefaultBottomNavBridge implements BottomNavigationBuilder, TabChanger {
   final BottomNavKey bottomNavKey;
   final List<TabFlow> tabFlows;
   final Color backgroundColor;
   final Color selectedItemColor;
   final Color unselectedItemColor;
+  BottomNavigationBar _bottomNavigationBar;
 
-  const DefaultBottomNavBridge({
+  DefaultBottomNavBridge({
     @required this.bottomNavKey,
     @required this.tabFlows,
     @required this.backgroundColor,
@@ -112,41 +113,59 @@ class DefaultBottomNavBridge with BottomNavigationBuilder{
 
   @override
   Widget build(int currentIndexTab, Function(int) onTabChanged) {
-    return BottomNavigationBar(
+    _bottomNavigationBar = BottomNavigationBar(
       key: bottomNavKey.key,
       backgroundColor: backgroundColor,
-      selectedItemColor:selectedItemColor,
+      selectedItemColor: selectedItemColor,
       unselectedItemColor: unselectedItemColor,
       currentIndex: currentIndexTab,
       items: tabFlows
-          .map((e) => BottomNavigationBarItem(icon: Icon(e.iconData), label: e.title))
+          .map(
+            (e) => BottomNavigationBarItem(
+              icon: Icon(e.iconData),
+              label: e.title,
+            ),
+          )
           .toList(),
       onTap: onTabChanged,
     );
+    return _bottomNavigationBar;
   }
 
   @override
   List<TabFlow> getTabFlows() {
     return tabFlows;
   }
+
+  @override
+  void onTap(int index) {
+    _bottomNavigationBar.onTap(index);
+  }
 }
 ```
 
-As already said - BottomNavigationPage already included inside library. This was done to remove boilerplate code, but to preserve the customization of the **BottomNavigationBar**, the BottomNavigationBuilder mixin was introduced. It's have only two methods for overriding - **build** and **getTabFlows**. But inside **build** function you can use any widget and library, the main thing is to set *currentIndexTab, onTabChanged, bottomNavKey* inside your own BottomNavigationBar. 
+As already said - BottomNavigationPage already included inside library. This was done to remove boilerplate code, but to preserve the customization of the **BottomNavigationBar**, the BottomNavigationBuilder and TabChanger were introduced. BottomNavigationBuilder have only two methods for overriding - **build** and **getTabFlows**. But inside **build** function you can use any widget and library, the main thing is to set *currentIndexTab, onTabChanged, bottomNavKey* inside your own BottomNavigationBar.  TabChanger have one method for overriding - **onTap **.
 
-**NOTE:** BottomNavKey already defined inside lib. *bottomNavKey* and *tabFlows* are needed dependencies for class, that's implemented mixin **BottomNavigationBuilder**. *tabFlows* - dependency, that we already defined in paragraph 2.
+**NOTE:** BottomNavKey already defined inside lib. *bottomNavKey* and *tabFlows* are needed dependencies for class, that's implemented **BottomNavigationBuilder, TabChanger**. *tabFlows* - dependency, that we already defined in paragraph 2.
 
 4. Create new file for registering new class **DefaultBottomNavBridge** as type BottomNavigationBuilder, that should be use as dependency for **BottomNavigationPage**.
 ```dart
 @module
 abstract class BottomNavBridgeModule {
-  BottomNavigationBuilder get getDefaultBottomNavBridge =>
+  @lazySingleton
+  DefaultBottomNavBridge get getDefaultBottomNavBridge =>
       DefaultBottomNavBridge(
-          bottomNavKey: getIt<BottomNavKey>(),
-          tabFlows: getIt<List<TabFlow>>(),
-          backgroundColor: Colors.white,
-          selectedItemColor: Colors.redAccent,
-          unselectedItemColor: Colors.grey);
+        bottomNavKey: getIt<BottomNavKey>(),
+        tabFlows: getIt<List<TabFlow>>(),
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.redAccent,
+        unselectedItemColor: Colors.grey,
+      );
+
+  BottomNavigationBuilder get getBottomNavigationBuilder =>
+      getIt<DefaultBottomNavBridge>();
+
+  TabChanger get getTabChanger => getIt<DefaultBottomNavBridge>();
 }
 ```
 

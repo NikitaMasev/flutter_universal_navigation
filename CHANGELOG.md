@@ -1,3 +1,11 @@
+## 0.7.3
+
+* Updated *get_it* and *injectable* versions.
+* Removed bottom navigation key dependency from app navigator.
+* Removed implicit dependency of concrete implementation bottom navigation bar from app navigator.
+* Updated documentation.
+* Making DefaultBottomNavBridge as lazy singleton.
+
 ## 0.7.2
 
 * Updated *get_it* and *rxdart* versions.
