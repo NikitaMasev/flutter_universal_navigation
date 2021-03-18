@@ -10,4 +10,4 @@ class EventData {
   });
 }
 
-enum Event {Login, FirstTab}
+enum Event { Login, FirstTab }

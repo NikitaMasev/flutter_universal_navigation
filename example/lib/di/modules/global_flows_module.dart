@@ -8,9 +8,9 @@ import 'package:universal_navigation_example/pages/tab_pages/nested_tab_page.dar
 abstract class GlobalFlowsModule {
   @singleton
   GlobalFlows get getGlobalFlows => GlobalFlows({
-    StartPage.routeName: (ctx) => getIt<StartPage>(),
-    LoginPage.routeName: (ctx) => getIt<LoginPage>(),
-    BottomNavigationPage.routeName: (ctx) => getIt<BottomNavigationPage>(),
-    NestedTabPage.routeName: (ctx) => getIt<NestedTabPage>(),
-  });
+        StartPage.routeName: (ctx) => getIt<StartPage>(),
+        LoginPage.routeName: (ctx) => getIt<LoginPage>(),
+        BottomNavigationPage.routeName: (ctx) => getIt<BottomNavigationPage>(),
+        NestedTabPage.routeName: (ctx) => getIt<NestedTabPage>(),
+      });
 }
