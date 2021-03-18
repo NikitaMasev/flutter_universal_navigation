@@ -5,7 +5,7 @@ import 'package:universal_navigation_example/pages/default_bottom_nav_bridge.dar
 
 @module
 abstract class BottomNavBridgeModule {
-  @singleton
+  @lazySingleton
   DefaultBottomNavBridge get getDefaultBottomNavBridge =>
       DefaultBottomNavBridge(
         bottomNavKey: getIt<BottomNavKey>(),
