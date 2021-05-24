@@ -6,8 +6,8 @@ class TabFlow {
   final String title;
 
   ///Should be used if [iconData] not presented.
-  final AssetImage assetImage;
-  final IconData iconData;
+  final AssetImage? assetImage;
+  final IconData? iconData;
 
   ///Used for nesting navigation inside [BottomNavigationPage]
   final GlobalKey<NavigatorState> navigatorKey;
@@ -15,10 +15,11 @@ class TabFlow {
   ///Root page of navigation bar item.
   final Widget page;
 
-  TabFlow(
-      {this.title = '',
-      this.assetImage,
-      this.iconData,
-      @required this.navigatorKey,
-      @required this.page});
+  TabFlow({
+    this.title = '',
+    this.assetImage,
+    this.iconData,
+    required this.navigatorKey,
+    required this.page,
+  });
 }

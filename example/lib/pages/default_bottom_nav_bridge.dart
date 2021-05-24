@@ -7,14 +7,14 @@ class DefaultBottomNavBridge implements BottomNavigationBuilder, TabChanger {
   final Color backgroundColor;
   final Color selectedItemColor;
   final Color unselectedItemColor;
-  BottomNavigationBar _bottomNavigationBar;
+  late BottomNavigationBar _bottomNavigationBar;
 
   DefaultBottomNavBridge({
-    @required this.bottomNavKey,
-    @required this.tabFlows,
-    @required this.backgroundColor,
-    @required this.selectedItemColor,
-    @required this.unselectedItemColor,
+    required this.bottomNavKey,
+    required this.tabFlows,
+    required this.backgroundColor,
+    required this.selectedItemColor,
+    required this.unselectedItemColor,
   });
 
   @override
@@ -45,6 +45,6 @@ class DefaultBottomNavBridge implements BottomNavigationBuilder, TabChanger {
 
   @override
   void onTap(int index) {
-    _bottomNavigationBar.onTap(index);
+    _bottomNavigationBar.onTap?.call(index);
   }
 }

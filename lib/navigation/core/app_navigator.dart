@@ -22,7 +22,7 @@ class AppNavigator implements TabChangeListener {
   final GlobalNavKey _globalNavKey;
   final NavigationEvents _navigationEvents;
   final TabChanger _tabChanger;
-  TabFlow _currentTab;
+  late TabFlow _currentTab;
 
   AppNavigator(
     this._tabFlows,
@@ -44,16 +44,16 @@ class AppNavigator implements TabChangeListener {
   void _eventGlobalNavigation(NavigationArguments navigationArguments) {
     switch (navigationArguments.navigationTypeEvent) {
       case NavigationTypeEvent.PUSH:
-        _eventPushGlobalNavigation(navigationArguments.routeName);
+        _eventPushGlobalNavigation(navigationArguments.routeName!);
         break;
       case NavigationTypeEvent.PUSH_REPLACEMENT:
-        _eventPushReplacementGlobalNavigation(navigationArguments.routeName);
+        _eventPushReplacementGlobalNavigation(navigationArguments.routeName!);
         break;
       case NavigationTypeEvent.POP:
         _eventPopGlobalNavigation();
         break;
       case NavigationTypeEvent.NAVIGATE_TO_TAB:
-        _eventNavigateToTab(navigationArguments.tabIndex,
+        _eventNavigateToTab(navigationArguments.tabIndex!,
             navigationArguments.deleteRouteTabIndex);
         break;
     }
@@ -61,23 +61,23 @@ class AppNavigator implements TabChangeListener {
 
   ///Pushing new global(without [BottomNavigationPage]) page and putting the current page on the stack.
   void _eventPushGlobalNavigation(String routeName) =>
-      _globalNavKey.key.currentState.pushNamed(routeName);
+      _globalNavKey.key.currentState!.pushNamed(routeName);
 
   ///Replacing the current page with a new one(without [BottomNavigationPage]).
   void _eventPushReplacementGlobalNavigation(String routeName) =>
-      _globalNavKey.key.currentState
+      _globalNavKey.key.currentState!
           .pushNamedAndRemoveUntil(routeName, ModalRoute.withName('/'));
 
   ///Remove current global(without [BottomNavigationPage]) page from stack.
-  void _eventPopGlobalNavigation() => _globalNavKey.key.currentState.pop();
+  void _eventPopGlobalNavigation() => _globalNavKey.key.currentState!.pop();
 
   ///Navigate to certain tab by [tabIndex].
   ///Also support deleting certain tab stack of pages by [deleteRouteTabIndex].
-  void _eventNavigateToTab(int tabIndex, int deleteRouteTabIndex) {
+  void _eventNavigateToTab(int tabIndex, int? deleteRouteTabIndex) {
     if (deleteRouteTabIndex != null) {
       _tabFlows[deleteRouteTabIndex]
           .navigatorKey
-          .currentState
+          .currentState!
           .popUntil((route) => route.isFirst);
     }
     _tabChanger.onTap(tabIndex);
@@ -90,7 +90,7 @@ class AppNavigator implements TabChangeListener {
 
     switch (navigationArguments.navigationTypeEvent) {
       case NavigationTypeEvent.PUSH:
-        _eventPushTabNestedNavigation(routeName, isFullscreenNavigation);
+        _eventPushTabNestedNavigation(routeName!, isFullscreenNavigation!);
         break;
       case NavigationTypeEvent.PUSH_REPLACEMENT:
         break;
@@ -113,7 +113,7 @@ class AppNavigator implements TabChangeListener {
 
     Navigator.of(_getCurrentContext, rootNavigator: isFullscreenNavigation)
         .push(_buildAdaptivePageRoute(
-      builder: _globalFlows.flows[routeName],
+      builder: _globalFlows.flows[routeName]!,
       fullscreenDialog: isFullscreenNavigation,
     ));
   }
@@ -123,8 +123,8 @@ class AppNavigator implements TabChangeListener {
 
   ///Builder of tab nested page depending on the platform.
   PageRoute<T> _buildAdaptivePageRoute<T>({
-    @required WidgetBuilder builder,
-    @required bool fullscreenDialog,
+    required WidgetBuilder builder,
+    required bool fullscreenDialog,
   }) =>
       _isIos
           ? CupertinoPageRoute(
@@ -138,11 +138,11 @@ class AppNavigator implements TabChangeListener {
 
   ///Defining type of platform for making different transition on IOS and other platforms.
   bool get _isIos =>
-      Theme.of(_globalNavKey.key.currentContext).platform == TargetPlatform.iOS;
+      Theme.of(_globalNavKey.key.currentContext!).platform == TargetPlatform.iOS;
 
   ///Getting current context depending on current root of bottom navigation bar item.
   BuildContext get _getCurrentContext =>
-      _currentTab.navigatorKey.currentContext;
+      _currentTab.navigatorKey.currentContext!;
 
   ///Changing [_currentTab] by changing bottom navigation bar item in [BottomNavigationPage].
   @override

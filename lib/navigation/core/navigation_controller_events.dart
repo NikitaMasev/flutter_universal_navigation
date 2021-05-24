@@ -23,7 +23,7 @@ class NavigationControllerEvents<T>
   ///Used for transfer global(without [BottomNavigationPage]) navigation events to [AppNavigator].
   final BehaviorSubject<NavigationArguments> _globalNavigationEvents;
 
-  ///Mixin that allow to add some event data and subscribe to listening events.
+  ///Allow to add some event data and subscribe to listening events.
   final EventNotifier _notifier;
 
   NavigationControllerEvents(this._tabNestedNavigationEvents,
@@ -31,63 +31,59 @@ class NavigationControllerEvents<T>
 
   @override
   void pushTabNestedPage(String routeName,
-      {bool isFullscreenNavigation = false, T eventData}) {
+      {bool isFullscreenNavigation = false, T? eventData}) {
     _pushEventData(eventData);
     _tabNestedNavigationEvents.add(NavigationTabArguments(
-        routeName: routeName,
-        isFullscreenNavigation: isFullscreenNavigation,
-        navigationTypeEvent: NavigationTypeEvent.PUSH));
+      routeName: routeName,
+      isFullscreenNavigation: isFullscreenNavigation,
+      navigationTypeEvent: NavigationTypeEvent.PUSH,
+    ));
   }
 
   @override
   void popTabNestedPage() {
     _tabNestedNavigationEvents.add(NavigationTabArguments(
-        routeName: null,
-        isFullscreenNavigation: null,
-        navigationTypeEvent: NavigationTypeEvent.POP));
+      navigationTypeEvent: NavigationTypeEvent.POP,
+    ));
   }
 
   @override
-  void pushReplacementGlobalPage(String routeName, {T eventData}) {
+  void pushReplacementGlobalPage(String routeName, {T? eventData}) {
     _pushEventData(eventData);
     _globalNavigationEvents.add(NavigationArguments(
-        routeName: routeName,
-        tabIndex: null,
-        deleteRouteTabIndex: null,
-        navigationTypeEvent: NavigationTypeEvent.PUSH_REPLACEMENT));
+      routeName: routeName,
+      navigationTypeEvent: NavigationTypeEvent.PUSH_REPLACEMENT,
+    ));
   }
 
   @override
   void popGlobalPage() {
     _globalNavigationEvents.add(NavigationArguments(
-        routeName: null,
-        tabIndex: null,
-        deleteRouteTabIndex: null,
-        navigationTypeEvent: NavigationTypeEvent.POP));
+      navigationTypeEvent: NavigationTypeEvent.POP,
+    ));
   }
 
   @override
-  void pushGlobalPage(String routeName, {T eventData}) {
+  void pushGlobalPage(String routeName, {T? eventData}) {
     _pushEventData(eventData);
     _globalNavigationEvents.add(NavigationArguments(
-        routeName: routeName,
-        tabIndex: null,
-        deleteRouteTabIndex: null,
-        navigationTypeEvent: NavigationTypeEvent.PUSH));
+      routeName: routeName,
+      navigationTypeEvent: NavigationTypeEvent.PUSH,
+    ));
   }
 
   @override
-  void navigateToTab(int tabIndex, {int deleteRouteTabIndex, T eventData}) {
+  void navigateToTab(int tabIndex, {int? deleteRouteTabIndex, T? eventData}) {
     _pushEventData(eventData);
     _globalNavigationEvents.add(NavigationArguments(
-        routeName: null,
-        tabIndex: tabIndex,
-        deleteRouteTabIndex: deleteRouteTabIndex,
-        navigationTypeEvent: NavigationTypeEvent.NAVIGATE_TO_TAB));
+      tabIndex: tabIndex,
+      deleteRouteTabIndex: deleteRouteTabIndex,
+      navigationTypeEvent: NavigationTypeEvent.NAVIGATE_TO_TAB,
+    ));
   }
 
   ///Push event data if it exist and not null.
-  void _pushEventData(T eventData) {
+  void _pushEventData(T? eventData) {
     if (eventData != null) {
       _notifier.sink(eventData);
     }
@@ -103,7 +99,7 @@ class NavigationControllerEvents<T>
 
   @override
   Stream<T> getEvents() {
-    return _notifier.getStreamEvents();
+    return _notifier.getStreamEvents() as Stream<T>;
   }
 
   @override

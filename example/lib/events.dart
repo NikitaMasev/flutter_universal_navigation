@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-
 class EventData {
   final Event event;
   final dynamic data;
 
   const EventData({
-    @required this.event,
+    required this.event,
     this.data,
   });
 }

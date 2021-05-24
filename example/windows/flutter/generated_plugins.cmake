@@ -3,7 +3,6 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  universal_navigation
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

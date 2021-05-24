@@ -26,7 +26,7 @@ class BottomNavigationPage extends StatefulWidget {
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
   int _currentIndexTab = 0;
-  TabFlow _currentTabFlow;
+  late TabFlow _currentTabFlow;
 
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async =>
-          !await _currentTabFlow.navigatorKey.currentState.maybePop(),
+          !await _currentTabFlow.navigatorKey.currentState!.maybePop(),
       child: Scaffold(
         body: IndexedStack(
           index: _currentIndexTab,
@@ -68,7 +68,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         _currentIndexTab = index;
         _notifyUpdateTab();
       } else {
-        _currentTabFlow.navigatorKey.currentState
+        _currentTabFlow.navigatorKey.currentState!
             .popUntil((route) => route.isFirst);
       }
     });

@@ -10,19 +10,19 @@ abstract class NavigationController<T> {
   void pushTabNestedPage(
     String routeName, {
     bool isFullscreenNavigation = false,
-    T eventData,
+    T? eventData,
   });
 
   ///Push new global(without [BottomNavigationPage]) page replacing the current page.
-  void pushReplacementGlobalPage(String routeName, {T eventData});
+  void pushReplacementGlobalPage(String routeName, {T? eventData});
 
   ///Push new global(without [BottomNavigationPage]) page.
   ///After calling this method current page will be pushed to stack pages.
-  void pushGlobalPage(String routeName, {T eventData});
+  void pushGlobalPage(String routeName, {T? eventData});
 
   ///Navigate to certain tab bar item by using [tabIndex].
   ///It also allows you to reset the stack of pages on a specific tab.
-  void navigateToTab(int tabIndex, {int deleteRouteTabIndex, T eventData});
+  void navigateToTab(int tabIndex, {int? deleteRouteTabIndex, T? eventData});
 
   ///Deleting current page from stack pages(stack current tab bar item).
   void popTabNestedPage();
