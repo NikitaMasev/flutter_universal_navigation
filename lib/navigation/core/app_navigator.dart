@@ -138,7 +138,8 @@ class AppNavigator implements TabChangeListener {
 
   ///Defining type of platform for making different transition on IOS and other platforms.
   bool get _isIos =>
-      Theme.of(_globalNavKey.key.currentContext!).platform == TargetPlatform.iOS;
+      Theme.of(_globalNavKey.key.currentContext!).platform ==
+      TargetPlatform.iOS;
 
   ///Getting current context depending on current root of bottom navigation bar item.
   BuildContext get _getCurrentContext =>

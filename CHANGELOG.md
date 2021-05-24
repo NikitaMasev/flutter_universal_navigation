@@ -1,4 +1,4 @@
-## 0.8.0
+## 0.8.1
 
 * Support null safety.
 * Updated *get_it* (7.1.3) and *injectable*(1.4.1) versions.
